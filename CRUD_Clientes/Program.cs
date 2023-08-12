@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRUD_Clientes.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,9 +15,17 @@ namespace CRUD_Clientes
         [STAThread]
         static void Main()
         {
+
+            //Realizar conexão com o banco de dados:
+            ConectaDB.Iniciar_Conexao_BD();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            
         }
+
+        
     }
 }

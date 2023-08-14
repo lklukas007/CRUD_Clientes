@@ -42,11 +42,6 @@
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.btnRealizaCadastro = new System.Windows.Forms.Button();
             this.comboBox_Genero = new System.Windows.Forms.ComboBox();
-            this.cRUD_CLIENTESDataSet = new CRUD_Clientes.CRUD_CLIENTESDataSet();
-            this.generoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.generoTableAdapter = new CRUD_Clientes.CRUD_CLIENTESDataSetTableAdapters.GeneroTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.cRUD_CLIENTESDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.generoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -159,33 +154,7 @@
             this.btnRealizaCadastro.Text = "Cadastrar";
             this.btnRealizaCadastro.UseVisualStyleBackColor = true;
             this.btnRealizaCadastro.Click += new System.EventHandler(this.btnRealizaCadastro_Click);
-            // 
-            // comboBox_Genero
-            // 
-            this.comboBox_Genero.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.generoBindingSource, "Descricao", true));
-            this.comboBox_Genero.DataSource = this.generoBindingSource;
-            this.comboBox_Genero.DisplayMember = "Descricao";
-            this.comboBox_Genero.FormattingEnabled = true;
-            this.comboBox_Genero.Location = new System.Drawing.Point(427, 153);
-            this.comboBox_Genero.Name = "comboBox_Genero";
-            this.comboBox_Genero.Size = new System.Drawing.Size(206, 24);
-            this.comboBox_Genero.TabIndex = 13;
-            this.comboBox_Genero.ValueMember = "Descricao";
-            // 
-            // cRUD_CLIENTESDataSet
-            // 
-            this.cRUD_CLIENTESDataSet.DataSetName = "CRUD_CLIENTESDataSet";
-            this.cRUD_CLIENTESDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // generoBindingSource
-            // 
-            this.generoBindingSource.DataMember = "Genero";
-            this.generoBindingSource.DataSource = this.cRUD_CLIENTESDataSet;
-            // 
-            // generoTableAdapter
-            // 
-            this.generoTableAdapter.ClearBeforeFill = true;
-            // 
+            //  
             // FormCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -206,9 +175,6 @@
             this.Controls.Add(this.label1);
             this.Name = "FormCadastro";
             this.Text = "Cadastro";
-            this.Load += new System.EventHandler(this.FormCadastro_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.cRUD_CLIENTESDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.generoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -229,8 +195,5 @@
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Button btnRealizaCadastro;
         private System.Windows.Forms.ComboBox comboBox_Genero;
-        private CRUD_CLIENTESDataSet cRUD_CLIENTESDataSet;
-        private System.Windows.Forms.BindingSource generoBindingSource;
-        private CRUD_CLIENTESDataSetTableAdapters.GeneroTableAdapter generoTableAdapter;
     }
 }

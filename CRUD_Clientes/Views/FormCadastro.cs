@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CRUD_Clientes.Database;
 using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CRUD_Clientes.Views
 {
@@ -48,12 +47,5 @@ namespace CRUD_Clientes.Views
 
         }
 
-
-        private void FormCadastro_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'cRUD_CLIENTESDataSet.Genero' table. You can move, or remove it, as needed.
-            this.generoTableAdapter.Fill(this.cRUD_CLIENTESDataSet.Genero);
-
-        }
     }
 }

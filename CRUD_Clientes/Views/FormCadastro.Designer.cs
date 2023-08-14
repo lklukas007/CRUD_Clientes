@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -154,7 +153,14 @@
             this.btnRealizaCadastro.Text = "Cadastrar";
             this.btnRealizaCadastro.UseVisualStyleBackColor = true;
             this.btnRealizaCadastro.Click += new System.EventHandler(this.btnRealizaCadastro_Click);
-            //  
+            // 
+            // comboBox_Genero
+            // 
+            this.comboBox_Genero.Location = new System.Drawing.Point(427, 153);
+            this.comboBox_Genero.Name = "comboBox_Genero";
+            this.comboBox_Genero.Size = new System.Drawing.Size(121, 24);
+            this.comboBox_Genero.TabIndex = 0;
+            // 
             // FormCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);

@@ -18,25 +18,15 @@ namespace CRUD_Clientes
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnCadastro_Click(object sender, EventArgs e)
         {
             FormCadastro formCadastro = new FormCadastro();
             formCadastro.ShowDialog();
+        }
+
+        private void FormCRUD_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

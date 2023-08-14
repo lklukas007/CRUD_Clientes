@@ -181,6 +181,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CRUD_CLIENTESDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CRUD_CLIENTESDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataBase\ConectaBD.cs" />
     <Compile Include="Views\FormCRUD.cs">
       <SubType>Form</SubType>
@@ -211,6 +216,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="CRUD_CLIENTESDataSet.xsc">
+      <DependentUpon>CRUD_CLIENTESDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CRUD_CLIENTESDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CRUD_CLIENTESDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CRUD_CLIENTESDataSet.xss">
+      <DependentUpon>CRUD_CLIENTESDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

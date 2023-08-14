@@ -28,20 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtNome = new System.Windows.Forms.TextBox();
+            this.txtSobrenome = new System.Windows.Forms.TextBox();
+            this.txtDatanascimento = new System.Windows.Forms.TextBox();
+            this.txtNumero = new System.Windows.Forms.TextBox();
+            this.txtEndereco = new System.Windows.Forms.TextBox();
+            this.btnRealizaCadastro = new System.Windows.Forms.Button();
+            this.comboBox_Genero = new System.Windows.Forms.ComboBox();
+            this.cRUD_CLIENTESDataSet = new CRUD_Clientes.CRUD_CLIENTESDataSet();
+            this.generoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.generoTableAdapter = new CRUD_Clientes.CRUD_CLIENTESDataSetTableAdapters.GeneroTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.cRUD_CLIENTESDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -53,7 +58,6 @@
             this.label1.Size = new System.Drawing.Size(51, 19);
             this.label1.TabIndex = 0;
             this.label1.Text = "Nome";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -104,90 +108,96 @@
             this.label6.Size = new System.Drawing.Size(66, 19);
             this.label6.TabIndex = 5;
             this.label6.Text = "Número";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
-            // textBox1
+            // txtNome
             // 
-            this.textBox1.Location = new System.Drawing.Point(35, 57);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(374, 33);
-            this.textBox1.TabIndex = 6;
+            this.txtNome.Location = new System.Drawing.Point(35, 57);
+            this.txtNome.Multiline = true;
+            this.txtNome.Name = "txtNome";
+            this.txtNome.Size = new System.Drawing.Size(374, 33);
+            this.txtNome.TabIndex = 6;
             // 
-            // textBox2
+            // txtSobrenome
             // 
-            this.textBox2.Location = new System.Drawing.Point(427, 57);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(346, 33);
-            this.textBox2.TabIndex = 7;
+            this.txtSobrenome.Location = new System.Drawing.Point(427, 57);
+            this.txtSobrenome.Multiline = true;
+            this.txtSobrenome.Name = "txtSobrenome";
+            this.txtSobrenome.Size = new System.Drawing.Size(346, 33);
+            this.txtSobrenome.TabIndex = 7;
             // 
-            // textBox4
+            // txtDatanascimento
             // 
-            this.textBox4.Location = new System.Drawing.Point(35, 153);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(346, 33);
-            this.textBox4.TabIndex = 9;
+            this.txtDatanascimento.Location = new System.Drawing.Point(35, 153);
+            this.txtDatanascimento.Multiline = true;
+            this.txtDatanascimento.Name = "txtDatanascimento";
+            this.txtDatanascimento.Size = new System.Drawing.Size(346, 33);
+            this.txtDatanascimento.TabIndex = 9;
             // 
-            // textBox5
+            // txtNumero
             // 
-            this.textBox5.Location = new System.Drawing.Point(35, 322);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(150, 33);
-            this.textBox5.TabIndex = 10;
-            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            this.txtNumero.Location = new System.Drawing.Point(35, 322);
+            this.txtNumero.Multiline = true;
+            this.txtNumero.Name = "txtNumero";
+            this.txtNumero.Size = new System.Drawing.Size(150, 33);
+            this.txtNumero.TabIndex = 10;
             // 
-            // textBox6
+            // txtEndereco
             // 
-            this.textBox6.Location = new System.Drawing.Point(35, 251);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(738, 33);
-            this.textBox6.TabIndex = 11;
+            this.txtEndereco.Location = new System.Drawing.Point(35, 251);
+            this.txtEndereco.Multiline = true;
+            this.txtEndereco.Name = "txtEndereco";
+            this.txtEndereco.Size = new System.Drawing.Size(738, 33);
+            this.txtEndereco.TabIndex = 11;
             // 
-            // button1
+            // btnRealizaCadastro
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(301, 368);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(215, 59);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Cadastrar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnRealizaCadastro.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRealizaCadastro.Location = new System.Drawing.Point(301, 368);
+            this.btnRealizaCadastro.Name = "btnRealizaCadastro";
+            this.btnRealizaCadastro.Size = new System.Drawing.Size(215, 59);
+            this.btnRealizaCadastro.TabIndex = 12;
+            this.btnRealizaCadastro.Text = "Cadastrar";
+            this.btnRealizaCadastro.UseVisualStyleBackColor = true;
+            this.btnRealizaCadastro.Click += new System.EventHandler(this.btnRealizaCadastro_Click);
             // 
-            // comboBox1
+            // comboBox_Genero
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(427, 153);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(206, 24);
-            this.comboBox1.TabIndex = 13;
+            this.comboBox_Genero.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.generoBindingSource, "Descricao", true));
+            this.comboBox_Genero.DataSource = this.generoBindingSource;
+            this.comboBox_Genero.DisplayMember = "Descricao";
+            this.comboBox_Genero.FormattingEnabled = true;
+            this.comboBox_Genero.Location = new System.Drawing.Point(427, 153);
+            this.comboBox_Genero.Name = "comboBox_Genero";
+            this.comboBox_Genero.Size = new System.Drawing.Size(206, 24);
+            this.comboBox_Genero.TabIndex = 13;
+            this.comboBox_Genero.ValueMember = "Descricao";
             // 
-            // button2
+            // cRUD_CLIENTESDataSet
             // 
-            this.button2.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(427, 183);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(206, 29);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "Cadastrar Gênero";
-            this.button2.UseVisualStyleBackColor = true;
+            this.cRUD_CLIENTESDataSet.DataSetName = "CRUD_CLIENTESDataSet";
+            this.cRUD_CLIENTESDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // generoBindingSource
+            // 
+            this.generoBindingSource.DataMember = "Genero";
+            this.generoBindingSource.DataSource = this.cRUD_CLIENTESDataSet;
+            // 
+            // generoTableAdapter
+            // 
+            this.generoTableAdapter.ClearBeforeFill = true;
             // 
             // FormCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.comboBox_Genero);
+            this.Controls.Add(this.btnRealizaCadastro);
+            this.Controls.Add(this.txtEndereco);
+            this.Controls.Add(this.txtNumero);
+            this.Controls.Add(this.txtDatanascimento);
+            this.Controls.Add(this.txtSobrenome);
+            this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -196,6 +206,9 @@
             this.Controls.Add(this.label1);
             this.Name = "FormCadastro";
             this.Text = "Cadastro";
+            this.Load += new System.EventHandler(this.FormCadastro_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.cRUD_CLIENTESDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.generoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,13 +222,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtNome;
+        private System.Windows.Forms.TextBox txtSobrenome;
+        private System.Windows.Forms.TextBox txtDatanascimento;
+        private System.Windows.Forms.TextBox txtNumero;
+        private System.Windows.Forms.TextBox txtEndereco;
+        private System.Windows.Forms.Button btnRealizaCadastro;
+        private System.Windows.Forms.ComboBox comboBox_Genero;
+        private CRUD_CLIENTESDataSet cRUD_CLIENTESDataSet;
+        private System.Windows.Forms.BindingSource generoBindingSource;
+        private CRUD_CLIENTESDataSetTableAdapters.GeneroTableAdapter generoTableAdapter;
     }
 }

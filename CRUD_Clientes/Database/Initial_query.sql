@@ -34,3 +34,7 @@ CREATE TABLE Clientes(
  Codigo_Genero INT FOREIGN KEY REFERENCES Genero(Codigo)
 )
 
+-- Inserção dos gêneros na tabela Genero:
+INSERT INTO Genero (Descricao) VALUES ('Feminino');
+INSERT INTO Genero (Descricao) VALUES ('Masculino');
+INSERT INTO Genero (Descricao) VALUES ('Outro');

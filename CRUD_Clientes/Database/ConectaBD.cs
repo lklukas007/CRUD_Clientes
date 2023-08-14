@@ -27,7 +27,7 @@ namespace CRUD_Clientes.Database
                 
                 connection.Open();
                 // Conexão bem-sucedida!
-                MessageBox.Show("Conexão com o banco de dados estabelecida com sucesso!", "Conexão bem-sucedida", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Conexão com o banco de dados estabelecida com sucesso!", "Conexão bem-sucedida", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

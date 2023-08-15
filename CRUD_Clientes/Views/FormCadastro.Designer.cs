@@ -67,7 +67,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(423, 130);
+            this.label3.Location = new System.Drawing.Point(423, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 19);
             this.label3.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(31, 130);
+            this.label4.Location = new System.Drawing.Point(31, 105);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(154, 19);
             this.label4.TabIndex = 3;
@@ -87,7 +87,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(31, 224);
+            this.label5.Location = new System.Drawing.Point(31, 172);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 19);
             this.label5.TabIndex = 4;
@@ -97,7 +97,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(31, 300);
+            this.label6.Location = new System.Drawing.Point(31, 248);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(66, 19);
             this.label6.TabIndex = 5;
@@ -126,7 +126,7 @@
             // txtNumero
             // 
             this.txtNumero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumero.Location = new System.Drawing.Point(35, 322);
+            this.txtNumero.Location = new System.Drawing.Point(35, 270);
             this.txtNumero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNumero.Multiline = true;
             this.txtNumero.Name = "txtNumero";
@@ -136,7 +136,7 @@
             // txtEndereco
             // 
             this.txtEndereco.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEndereco.Location = new System.Drawing.Point(35, 251);
+            this.txtEndereco.Location = new System.Drawing.Point(35, 199);
             this.txtEndereco.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtEndereco.Multiline = true;
             this.txtEndereco.Name = "txtEndereco";
@@ -159,7 +159,7 @@
             // 
             this.comboBox_Genero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_Genero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox_Genero.Location = new System.Drawing.Point(427, 153);
+            this.comboBox_Genero.Location = new System.Drawing.Point(427, 128);
             this.comboBox_Genero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox_Genero.Name = "comboBox_Genero";
             this.comboBox_Genero.Size = new System.Drawing.Size(345, 28);
@@ -168,7 +168,7 @@
             // txtDatanascimento
             // 
             this.txtDatanascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDatanascimento.Location = new System.Drawing.Point(35, 152);
+            this.txtDatanascimento.Location = new System.Drawing.Point(35, 127);
             this.txtDatanascimento.Mask = "00/00/0000";
             this.txtDatanascimento.Name = "txtDatanascimento";
             this.txtDatanascimento.Size = new System.Drawing.Size(375, 27);

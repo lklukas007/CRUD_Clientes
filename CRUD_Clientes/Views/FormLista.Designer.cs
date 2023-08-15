@@ -30,7 +30,7 @@
         {
             this.label_listaclientes = new System.Windows.Forms.Label();
             this.dataGridViewClientes = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.btnAlterar_AbrirForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientes)).BeginInit();
             this.SuspendLayout();
@@ -63,16 +63,17 @@
             this.dataGridViewClientes.TabIndex = 7;
             this.dataGridViewClientes.Visible = false;
             // 
-            // button4
+            // btnExcluir
             // 
-            this.button4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(501, 475);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(211, 57);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "Excluir";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnExcluir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExcluir.Location = new System.Drawing.Point(501, 475);
+            this.btnExcluir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(211, 57);
+            this.btnExcluir.TabIndex = 10;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnAlterar_AbrirForm
             // 
@@ -91,7 +92,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(981, 545);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAlterar_AbrirForm);
             this.Controls.Add(this.label_listaclientes);
             this.Controls.Add(this.dataGridViewClientes);
@@ -108,7 +109,7 @@
 
         private System.Windows.Forms.Label label_listaclientes;
         private System.Windows.Forms.DataGridView dataGridViewClientes;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.Button btnAlterar_AbrirForm;
     }
 }

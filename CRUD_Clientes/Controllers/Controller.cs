@@ -114,20 +114,13 @@ namespace CRUD_Clientes.Controllers
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO clientes (Nome, Sobrenome, GeneroId, DataNascimento, Endereco, Numero) " +
-                                   "VALUES (@Nome, @Sobrenome, @GeneroId, @DataNascimento, @Endereco, @Numero)";
+                    string query = "DELETE FROM Clientes WHERE Codigo = @CodigoCliente";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.CommandTimeout = 3600;
 
-                        command.Parameters.AddWithValue("@Nome", cliente.Nome);
-                        command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
-
-                        command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
-                        command.Parameters.AddWithValue("@Endereco", cliente.Endereco);
-                        command.Parameters.AddWithValue("@Numero", cliente.Numero);
-                        command.Parameters.AddWithValue("@Codigo_Genero", cliente.Codigo_Genero);
+                        command.Parameters.AddWithValue("@CodigoCliente", cliente.CodigoCliente);
 
                         command.ExecuteNonQuery();
                     }
@@ -161,6 +154,59 @@ namespace CRUD_Clientes.Controllers
                         }
                     }
                 }
+            }
+
+
+            // Carregar cliente tela de alteração:
+            public void RetornaClienteAlteracao(Cliente_Model cliente)
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT C.Codigo ,Nome ,Sobrenome ,Datanascimento ,Endereco ,Numero_Endereco ,Codigo_Genero FROM Clientes C LEFT JOIN Genero G ON G.Codigo = C.Codigo_Genero WHERE C.Codigo = @CodigoCliente";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.CommandTimeout = 3600;
+
+                        command.Parameters.AddWithValue("@CodigoCliente", cliente.CodigoCliente);
+
+                        command.ExecuteScalar();
+                    }
+                }
+            }
+
+            // Preencher combobox de genero:
+            public List<Genero_Model> RetornaComboBox()
+            {
+                List<Genero_Model> listaGeneros = new List<Genero_Model>();
+
+                string connectionString = Config.ConnectionString;
+                string query = "SELECT Codigo,Descricao FROM Genero";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.CommandTimeout = 3600;
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Genero_Model genero = new Genero_Model();
+                                {
+                                    genero.Codigo = (int)reader["Codigo"];
+                                    genero.Descricao = reader["Descricao"].ToString();
+                                }
+                                listaGeneros.Add(genero);
+                            }
+                        }
+                    }
+                }
+                return listaGeneros;
             }
 
         }

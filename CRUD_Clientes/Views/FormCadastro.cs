@@ -21,30 +21,25 @@ namespace CRUD_Clientes.Views
         public FormCadastro()
         {
             InitializeComponent();
-            PreencherComboBox();
+            PreencherComboBoxForm();
 
         }
-        // Preencher combobox de genero:
-        public void PreencherComboBox()
+        
+        public void PreencherComboBoxForm() 
         {
-            string connectionString = Config.ConnectionString;
-            string query = "SELECT Codigo,Descricao FROM Genero";
+            // Criando uma instância da classe Funcoes_CRUD
+            var funcoesCrud = new Funcoes_CRUD();
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            // Chamando o método RetornaComboBox da instância de Funcoes_CRUD
+            List<Genero_Model> listaGeneros = funcoesCrud.RetornaComboBox();
+
+            // Adiciona os itens da listaGeneros no ComboBox
+            foreach (Genero_Model genero in listaGeneros)
             {
-                connection.Open();
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        comboBox_Genero.Items.Add(reader["Descricao"].ToString());
-                    }
-                }
+                comboBox_Genero.Items.Add(genero.Descricao);
             }
-        }
 
+        }
 
         private void btnRealizaCadastro_Click(object sender, EventArgs e)
         {

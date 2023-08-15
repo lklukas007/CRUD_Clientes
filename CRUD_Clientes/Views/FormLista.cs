@@ -58,10 +58,49 @@ namespace CRUD_Clientes.Views
 
         private void btnAlterar_AbrirForm_Click(object sender, EventArgs e)
         {
-            
+            if (dataGridViewClientes.SelectedRows.Count > 0)
+            {
+                // Crindo um objeto Cliente
+                Cliente_Model alteraCliente = new Cliente_Model();
 
+                DataGridViewRow selectedRow = dataGridViewClientes.SelectedRows[0];
+
+                alteraCliente.CodigoCliente = Convert.ToInt32(selectedRow.Cells["CodigoCliente"].Value);
+
+            }
+            else
+            {
+                MessageBox.Show("Selecione um cliente para realizar a alteração!");
+            }
             FormAlterar formAlterar = new FormAlterar();
             formAlterar.ShowDialog();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewClientes.SelectedRows.Count > 0)
+            {
+                // Exibe uma MessageBox de confirmação
+                DialogResult result = MessageBox.Show("Deseja realmente excluir este cadastro?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                // Crindo um objeto Cliente
+                Cliente_Model alteraCliente = new Cliente_Model();
+
+                DataGridViewRow selectedRow = dataGridViewClientes.SelectedRows[0];
+
+                alteraCliente.CodigoCliente = Convert.ToInt32(selectedRow.Cells["Código Cliente"].Value);
+                if (result == DialogResult.Yes)
+                {
+
+                }
+                else
+                {
+                    return;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um cliente para realizar a exclusão!");
+            }
         }
     }
 }

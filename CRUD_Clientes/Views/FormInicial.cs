@@ -43,5 +43,10 @@ namespace CRUD_Clientes
         {
 
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

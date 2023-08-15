@@ -14,7 +14,7 @@ namespace CRUD_Clientes.Models
         public DateTime DataNascimento { get; set; }
         public string Endereco { get; set; }
         public string Numero { get; set; }
-        public string Codigo_Genero { get; set; }
+        public int Codigo_Genero { get; set; }
     }
 
     public class Genero

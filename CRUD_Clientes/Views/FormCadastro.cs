@@ -47,44 +47,71 @@ namespace CRUD_Clientes.Views
 
         private void btnRealizaCadastro_Click(object sender, EventArgs e)
         {
-            // Criando uma instância da classe Funcoes_CRUD
-            var funcoesCrud = new Funcoes_CRUD();
-
-            // Crindo um objeto Cliente
-            Cliente novoCliente = new Cliente();
-            // Capturando valores da TextBox
-            novoCliente.Nome = txtNome.Text;
-            novoCliente.Sobrenome = txtSobrenome.Text;
-            novoCliente.Endereco = txtEndereco.Text;
-            novoCliente.Numero = txtNumero.Text;
-
-            string generoselecionado = comboBox_Genero.SelectedItem.ToString();
-            // Verificando se algum item foi selecionado
-            if (generoselecionado != null)
+            try
             {
+                // Criando uma instância da classe Funcoes_CRUD
+                var funcoesCrud = new Funcoes_CRUD();
 
-                // Chamando o método de validação de genero
-                funcoesCrud.RetornaGenero(generoselecionado);
-            }
-            else
-            {
-                MessageBox.Show("Selecione um gênero.");
-            }
+                // Crindo um objeto Cliente
+                Cliente novoCliente = new Cliente();
+                // Capturando valores da TextBox
+                novoCliente.Nome = txtNome.Text;
+                novoCliente.Sobrenome = txtSobrenome.Text;
+                novoCliente.Endereco = txtEndereco.Text;
+                novoCliente.Numero = txtNumero.Text;
 
-            // Convertendo a string da TextBox para DateTime
-            if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
-            {
-                novoCliente.DataNascimento = dataNascimento;
-            }
-            else
-            {
-                MessageBox.Show("Data de nascimento inválida");
-                return; // Sai do evento, pois a data é inválida
-            }
+                string generoSelecionado = comboBox_Genero.SelectedItem?.ToString();
 
-            
-            // Chamando o método InserirCliente da instância de Funcoes_CRUD
-            funcoesCrud.InserirCliente(novoCliente);
+                if (!string.IsNullOrEmpty(generoSelecionado))
+                {
+                    Genero genero = new Genero { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
+
+                    int codigoGenero = funcoesCrud.RetornaGenero(genero);
+
+                    if (codigoGenero != -1)
+                    {
+                        novoCliente.Codigo_Genero = codigoGenero;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Gênero selecionado é inválido.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Selecione um gênero.");
+                }
+
+
+                // Convertendo a string da TextBox para DateTime
+                if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
+                {
+                    novoCliente.DataNascimento = dataNascimento;
+                }
+                else
+                {
+                    MessageBox.Show("Data de nascimento inválida");
+                    return; // Sai do evento, pois a data é inválida
+                }
+
+
+                // Chamando o método InserirCliente da instância de Funcoes_CRUD
+                funcoesCrud.InserirCliente(novoCliente);
+
+                //Limpar campos:
+                txtNome.Text = "";
+                txtSobrenome.Text = "";
+                txtEndereco.Text = "";
+                txtNumero.Text = "";
+                txtDatanascimento.Text = "";
+                comboBox_Genero.SelectedItem = null;
+
+                MessageBox.Show("Cadastro Realizado com sucesso!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Falha ao cadastrar o cliente: ",ex.ToString());
+            }
 
         }
 

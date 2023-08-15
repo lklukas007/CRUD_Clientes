@@ -36,11 +36,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
             this.txtSobrenome = new System.Windows.Forms.TextBox();
-            this.txtDatanascimento = new System.Windows.Forms.TextBox();
             this.txtNumero = new System.Windows.Forms.TextBox();
             this.txtEndereco = new System.Windows.Forms.TextBox();
             this.btnRealizaCadastro = new System.Windows.Forms.Button();
             this.comboBox_Genero = new System.Windows.Forms.ComboBox();
+            this.txtDatanascimento = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -111,7 +111,7 @@
             this.txtNome.Multiline = true;
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(375, 34);
-            this.txtNome.TabIndex = 6;
+            this.txtNome.TabIndex = 1;
             // 
             // txtSobrenome
             // 
@@ -121,17 +121,7 @@
             this.txtSobrenome.Multiline = true;
             this.txtSobrenome.Name = "txtSobrenome";
             this.txtSobrenome.Size = new System.Drawing.Size(345, 34);
-            this.txtSobrenome.TabIndex = 7;
-            // 
-            // txtDatanascimento
-            // 
-            this.txtDatanascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDatanascimento.Location = new System.Drawing.Point(35, 153);
-            this.txtDatanascimento.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtDatanascimento.Multiline = true;
-            this.txtDatanascimento.Name = "txtDatanascimento";
-            this.txtDatanascimento.Size = new System.Drawing.Size(345, 34);
-            this.txtDatanascimento.TabIndex = 9;
+            this.txtSobrenome.TabIndex = 2;
             // 
             // txtNumero
             // 
@@ -141,7 +131,7 @@
             this.txtNumero.Multiline = true;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(151, 34);
-            this.txtNumero.TabIndex = 10;
+            this.txtNumero.TabIndex = 6;
             // 
             // txtEndereco
             // 
@@ -151,7 +141,7 @@
             this.txtEndereco.Multiline = true;
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(737, 34);
-            this.txtEndereco.TabIndex = 11;
+            this.txtEndereco.TabIndex = 5;
             // 
             // btnRealizaCadastro
             // 
@@ -160,7 +150,7 @@
             this.btnRealizaCadastro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRealizaCadastro.Name = "btnRealizaCadastro";
             this.btnRealizaCadastro.Size = new System.Drawing.Size(215, 59);
-            this.btnRealizaCadastro.TabIndex = 12;
+            this.btnRealizaCadastro.TabIndex = 7;
             this.btnRealizaCadastro.Text = "Cadastrar";
             this.btnRealizaCadastro.UseVisualStyleBackColor = true;
             this.btnRealizaCadastro.Click += new System.EventHandler(this.btnRealizaCadastro_Click);
@@ -168,22 +158,33 @@
             // comboBox_Genero
             // 
             this.comboBox_Genero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox_Genero.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Genero.Location = new System.Drawing.Point(427, 153);
             this.comboBox_Genero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox_Genero.Name = "comboBox_Genero";
-            this.comboBox_Genero.Size = new System.Drawing.Size(121, 24);
-            this.comboBox_Genero.TabIndex = 0;
+            this.comboBox_Genero.Size = new System.Drawing.Size(345, 28);
+            this.comboBox_Genero.TabIndex = 4;
+            // 
+            // txtDatanascimento
+            // 
+            this.txtDatanascimento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDatanascimento.Location = new System.Drawing.Point(35, 152);
+            this.txtDatanascimento.Mask = "00/00/0000";
+            this.txtDatanascimento.Name = "txtDatanascimento";
+            this.txtDatanascimento.Size = new System.Drawing.Size(375, 27);
+            this.txtDatanascimento.TabIndex = 3;
+            this.txtDatanascimento.ValidatingType = typeof(System.DateTime);
             // 
             // FormCadastro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtDatanascimento);
             this.Controls.Add(this.comboBox_Genero);
             this.Controls.Add(this.btnRealizaCadastro);
             this.Controls.Add(this.txtEndereco);
             this.Controls.Add(this.txtNumero);
-            this.Controls.Add(this.txtDatanascimento);
             this.Controls.Add(this.txtSobrenome);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.label6);
@@ -210,10 +211,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtNome;
         private System.Windows.Forms.TextBox txtSobrenome;
-        private System.Windows.Forms.TextBox txtDatanascimento;
         private System.Windows.Forms.TextBox txtNumero;
         private System.Windows.Forms.TextBox txtEndereco;
         private System.Windows.Forms.Button btnRealizaCadastro;
         private System.Windows.Forms.ComboBox comboBox_Genero;
+        private System.Windows.Forms.MaskedTextBox txtDatanascimento;
     }
 }

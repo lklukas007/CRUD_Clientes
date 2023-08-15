@@ -26,7 +26,7 @@ namespace CRUD_Clientes.Controllers
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO clientes (Nome, Sobrenome, DataNascimento, Endereco, Numero, Codigo_Genero) " +
+                    string query = "INSERT INTO clientes (Nome, Sobrenome, DataNascimento, Endereco, Numero_Endereco, Codigo_Genero) " +
                                    "VALUES (@Nome, @Sobrenome, @DataNascimento, @Endereco, @Numero, @Codigo_Genero)";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -43,24 +43,18 @@ namespace CRUD_Clientes.Controllers
                 }
             }
 
-            // Atualizar:
-            public void AtualizarCliente(Cliente cliente)
+            // Buscar:
+            public void BuscarCliente(Cliente cliente)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO clientes (Nome, Sobrenome, DataNascimento, Endereco, Numero, Codigo_Genero) " +
-                                    "VALUES (@Nome, @Sobrenome, @DataNascimento, @Endereco, @Numero, @Codigo_Genero)";
+                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome+C.Sobrenome AS NomeCompleto, DATEDIFF (YEAR,C.Datanascimento,GETDATE()) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@Nome", cliente.Nome);
-                        command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
-                        command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
-                        command.Parameters.AddWithValue("@Endereco", cliente.Endereco);
-                        command.Parameters.AddWithValue("@Numero", cliente.Numero);
-                        command.Parameters.AddWithValue("@Codigo_Genero", cliente.Codigo_Genero);
+                        
 
                         command.ExecuteNonQuery();
                     }
@@ -117,14 +111,13 @@ namespace CRUD_Clientes.Controllers
             }
 
             // Validação do Genero:
-            public int ValidaGenero(Genero genero)
+            public int RetornaGenero(Genero genero)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    string query = "SELECT Codigo FROM Genero WHERE Descicao = @Descricao";
-                    int codigoGenero;
+                    string query = "SELECT Codigo FROM Genero WHERE Descricao = @Descricao";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {

@@ -33,7 +33,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.dataGridViewClientes = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label_listaclientes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -85,34 +85,38 @@
             // 
             // dataGridViewClientes
             // 
+            this.dataGridViewClientes.AllowUserToAddRows = false;
+            this.dataGridViewClientes.AllowUserToDeleteRows = false;
+            this.dataGridViewClientes.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewClientes.Enabled = false;
             this.dataGridViewClientes.Location = new System.Drawing.Point(38, 39);
             this.dataGridViewClientes.Name = "dataGridViewClientes";
+            this.dataGridViewClientes.ReadOnly = true;
             this.dataGridViewClientes.RowHeadersWidth = 51;
             this.dataGridViewClientes.RowTemplate.Height = 24;
             this.dataGridViewClientes.Size = new System.Drawing.Size(997, 417);
             this.dataGridViewClientes.TabIndex = 4;
             this.dataGridViewClientes.Visible = false;
             // 
-            // label1
+            // label_listaclientes
             // 
-            this.label1.AutoSize = true;
-            this.label1.Enabled = false;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 23);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Lista de clientes";
-            this.label1.Visible = false;
+            this.label_listaclientes.AutoSize = true;
+            this.label_listaclientes.Enabled = false;
+            this.label_listaclientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_listaclientes.Location = new System.Drawing.Point(34, 9);
+            this.label_listaclientes.Name = "label_listaclientes";
+            this.label_listaclientes.Size = new System.Drawing.Size(152, 23);
+            this.label_listaclientes.TabIndex = 5;
+            this.label_listaclientes.Text = "Lista de clientes";
+            this.label_listaclientes.Visible = false;
             // 
             // FormInicial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 554);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_listaclientes);
             this.Controls.Add(this.dataGridViewClientes);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -135,7 +139,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.DataGridView dataGridViewClientes;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label_listaclientes;
     }
 }
 

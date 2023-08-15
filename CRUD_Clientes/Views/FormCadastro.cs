@@ -53,7 +53,7 @@ namespace CRUD_Clientes.Views
                 var funcoesCrud = new Funcoes_CRUD();
 
                 // Crindo um objeto Cliente
-                Cliente novoCliente = new Cliente();
+                Cliente_Model novoCliente = new Cliente_Model();
                 // Capturando valores da TextBox
                 novoCliente.Nome = txtNome.Text;
                 novoCliente.Sobrenome = txtSobrenome.Text;
@@ -64,7 +64,7 @@ namespace CRUD_Clientes.Views
 
                 if (!string.IsNullOrEmpty(generoSelecionado))
                 {
-                    Genero genero = new Genero { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
+                    Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
 
                     int codigoGenero = funcoesCrud.RetornaGenero(genero);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CRUD_Clientes.Models
 {
-    public class Cliente
+    public class Cliente_Model
     {
         public int Id { get; set; }
         public string Nome { get; set; }
@@ -17,10 +17,19 @@ namespace CRUD_Clientes.Models
         public int Codigo_Genero { get; set; }
     }
 
-    public class Genero
+    public class Genero_Model
     {
         public int Codigo { get; set; }
         public string Descricao { get; set; }
     }
+
+    public class ListaCliente_Model
+    {
+        public int CodigoCliente { get; set; }
+        public string NomeCompleto { get; set; }
+        public int Idade { get; set; }
+        public string DescricaoGenero { get; set; }
+    }
+
 
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using CRUD_Clientes.DB;
 using CRUD_Clientes.Views;
+using System.Windows.Forms;
 
 namespace CRUD_Clientes.Controllers
 {
@@ -20,7 +21,7 @@ namespace CRUD_Clientes.Controllers
 
 
             // Cadastrar:
-            public void InserirCliente(Cliente cliente)
+            public void InserirCliente(Cliente_Model cliente)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -44,25 +45,41 @@ namespace CRUD_Clientes.Controllers
             }
 
             // Buscar:
-            public void BuscarCliente(Cliente cliente)
+            public List<ListaCliente_Model> BuscarCliente()
             {
+                List<ListaCliente_Model> listaClientes = new List<ListaCliente_Model>();
+
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
 
-                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome+C.Sobrenome AS NomeCompleto, DATEDIFF (YEAR,C.Datanascimento,GETDATE()) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero";
+                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome+C.Sobrenome AS NomeCompleto, DATEDIFF(YEAR, C.Datanascimento, GETDATE()) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ListaCliente_Model cliente = new ListaCliente_Model
+                                {
+                                    CodigoCliente = (int)reader["CodigoCliente"],
+                                    NomeCompleto = reader["NomeCompleto"].ToString(),
+                                    Idade = (int)reader["Idade"],
+                                    DescricaoGenero = reader["Descricao"].ToString()
+                                };
 
-                        command.ExecuteNonQuery();
+                                listaClientes.Add(cliente);
+                            }
+                        }
                     }
                 }
+
+                return listaClientes;
             }
 
             // Editar:
-            public void EditarCliente(Cliente cliente)
+            public void EditarCliente(Cliente_Model cliente)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -86,7 +103,7 @@ namespace CRUD_Clientes.Controllers
             }
 
             // Excluir:
-            public void ExcluirCliente(Cliente cliente)
+            public void ExcluirCliente(Cliente_Model cliente)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -111,7 +128,7 @@ namespace CRUD_Clientes.Controllers
             }
 
             // Validação do Genero:
-            public int RetornaGenero(Genero genero)
+            public int RetornaGenero(Genero_Model genero)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

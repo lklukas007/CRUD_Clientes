@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CRUD_Clientes.Database;
 using System.Data.SqlClient;
+using CRUD_Clientes.Controllers;
+using CRUD_Clientes.DB;
+using CRUD_Clientes.Models;
 
 namespace CRUD_Clientes.Views
 {
@@ -17,33 +19,42 @@ namespace CRUD_Clientes.Views
         public FormCadastro()
         {
             InitializeComponent();
+            PreencherComboBox();
+
         }
+        // Preencher combobox de genero:
+        public void PreencherComboBox()
+        {
+            string connectionString = Config.ConnectionString;
+            string query = "SELECT Descricao FROM Genero";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        comboBox_Genero.Items.Add(reader["Descricao"].ToString());
+                    }
+                }
+            }
+        }
+
 
         private void btnRealizaCadastro_Click(object sender, EventArgs e)
         {
-
-            try {
-                string Nome = txtNome.Text;
-                string Sobrenome = txtSobrenome.Text;
-                string Datanascimento = txtDatanascimento.Text;
-                string Endereco = txtEndereco.Text;
-                string Numero_Endereco = txtNumero.Text;
-                //string Codigo_Genero = 1;
-                string sqlInsert = "INSERT INTO Clientes(Nome ,Sobrenome ,Datanascimento ,Endereco ,Numero_Endereco ,Codigo_Genero) VALUES (@Nome, @Sobrenome, @Datanascimento, @Endereco, @Numero_Endereco, @Codigo_Genero)";
-                
-                SqlCommand command = new SqlCommand(sqlInsert);
-                command.Parameters.AddWithValue("@Nome", Nome);
-                command.Parameters.AddWithValue("@Sobrenome", Sobrenome);
-                command.Parameters.AddWithValue("@Datanascimento", Datanascimento);
-                command.Parameters.AddWithValue("@Endereco", Endereco);
-                command.Parameters.AddWithValue("@Numero_Endereco", Numero_Endereco);
-                //command.Parameters.AddWithValue("@Codigo_Genero", Codigo_Genero);
-
-                int rowsAffected = command.ExecuteNonQuery();
+            Genero generoSelecionado = comboBox_Genero.SelectedItem as Genero;
+            if (generoSelecionado != null)
+            {
+                int codigo = generoSelecionado.Codigo;
+                string descricao = generoSelecionado.Descricao;
+                MessageBox.Show(generoSelecionado.ToString());
             }
-            catch (Exception ex){
-                MessageBox.Show("Erro ao realizar o cadastro do cliente: " + ex.Message, " - ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
+
 
         }
 

@@ -12,6 +12,7 @@ using CRUD_Clientes.Controllers;
 using CRUD_Clientes.DB;
 using CRUD_Clientes.Models;
 using static CRUD_Clientes.Controllers.Controller;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CRUD_Clientes.Views
 {
@@ -54,33 +55,30 @@ namespace CRUD_Clientes.Views
 
                 // Crindo um objeto Cliente
                 Cliente_Model novoCliente = new Cliente_Model();
+
                 // Capturando valores da TextBox
-                novoCliente.Nome = txtNome.Text;
+                if (!string.IsNullOrEmpty(novoCliente.Nome))
+                {
+                    novoCliente.Nome = txtNome.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Campo nome é obrigatório.");
+                    return;
+                }
                 novoCliente.Sobrenome = txtSobrenome.Text;
                 novoCliente.Endereco = txtEndereco.Text;
                 novoCliente.Numero = txtNumero.Text;
 
+                // Tratamento genero da combobox, desde que o objeto nao seja nulo, ele vai converter: tostring
                 string generoSelecionado = comboBox_Genero.SelectedItem?.ToString();
 
-                if (!string.IsNullOrEmpty(generoSelecionado))
-                {
-                    Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
+                Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
 
-                    int codigoGenero = funcoesCrud.RetornaGenero(genero);
+                int codigoGenero = funcoesCrud.RetornaGenero(genero);
 
-                    if (codigoGenero != -1)
-                    {
-                        novoCliente.Codigo_Genero = codigoGenero;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Gênero selecionado é inválido.");
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Selecione um gênero.");
-                }
+                novoCliente.Codigo_Genero = codigoGenero;
+                
 
 
                 // Convertendo a string da TextBox para DateTime
@@ -97,7 +95,7 @@ namespace CRUD_Clientes.Views
 
                 // Chamando o método InserirCliente da instância de Funcoes_CRUD
                 funcoesCrud.InserirCliente(novoCliente);
-
+              
                 //Limpar campos:
                 txtNome.Text = "";
                 txtSobrenome.Text = "";

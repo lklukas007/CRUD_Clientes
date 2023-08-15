@@ -32,6 +32,8 @@ namespace CRUD_Clientes.Controllers
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.CommandTimeout = 3600;
+
                         command.Parameters.AddWithValue("@Nome", cliente.Nome);
                         command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
                         command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
@@ -53,10 +55,11 @@ namespace CRUD_Clientes.Controllers
                 {
                     connection.Open();
 
-                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome+C.Sobrenome AS NomeCompleto, DATEDIFF(YEAR, C.Datanascimento, GETDATE()) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero";
+                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome + ' ' + C.Sobrenome AS NomeCompleto, DATEDIFF(YEAR, C.Datanascimento, GETDATE()) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.CommandTimeout = 3600;
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             while (reader.Read())
@@ -90,6 +93,8 @@ namespace CRUD_Clientes.Controllers
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.CommandTimeout = 3600;
+
                         command.Parameters.AddWithValue("@Nome", cliente.Nome);
                         command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
                         command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
@@ -114,6 +119,8 @@ namespace CRUD_Clientes.Controllers
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.CommandTimeout = 3600;
+
                         command.Parameters.AddWithValue("@Nome", cliente.Nome);
                         command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
 
@@ -138,6 +145,8 @@ namespace CRUD_Clientes.Controllers
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+                        command.CommandTimeout = 3600;
+
                         command.Parameters.AddWithValue("@Descricao", genero.Descricao);
 
                         object result = command.ExecuteScalar();

@@ -184,6 +184,18 @@
     <Compile Include="Controllers\Controller.cs" />
     <Compile Include="DB\ConnectionString.cs" />
     <Compile Include="Models\Model.cs" />
+    <Compile Include="Views\FormAlterar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormAlterar.Designer.cs">
+      <DependentUpon>FormAlterar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormLista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormLista.Designer.cs">
+      <DependentUpon>FormLista.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\FormInicial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +209,9 @@
     <Compile Include="Views\FormCadastro.Designer.cs">
       <DependentUpon>FormCadastro.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\FormAlterar.resx">
+      <DependentUpon>FormAlterar.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\FormCadastro.resx">
       <DependentUpon>FormCadastro.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,6 +227,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\FormLista.resx">
+      <DependentUpon>FormLista.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

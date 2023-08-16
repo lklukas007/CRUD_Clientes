@@ -40,9 +40,10 @@
             this.label_listaclientes.AutoSize = true;
             this.label_listaclientes.Enabled = false;
             this.label_listaclientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_listaclientes.Location = new System.Drawing.Point(12, 9);
+            this.label_listaclientes.Location = new System.Drawing.Point(9, 7);
+            this.label_listaclientes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label_listaclientes.Name = "label_listaclientes";
-            this.label_listaclientes.Size = new System.Drawing.Size(152, 23);
+            this.label_listaclientes.Size = new System.Drawing.Size(121, 18);
             this.label_listaclientes.TabIndex = 8;
             this.label_listaclientes.Text = "Lista de clientes";
             this.label_listaclientes.Visible = false;
@@ -54,22 +55,24 @@
             this.dataGridViewClientes.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewClientes.Enabled = false;
-            this.dataGridViewClientes.Location = new System.Drawing.Point(16, 47);
+            this.dataGridViewClientes.Location = new System.Drawing.Point(12, 38);
+            this.dataGridViewClientes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewClientes.MultiSelect = false;
             this.dataGridViewClientes.Name = "dataGridViewClientes";
             this.dataGridViewClientes.ReadOnly = true;
             this.dataGridViewClientes.RowHeadersWidth = 51;
             this.dataGridViewClientes.RowTemplate.Height = 24;
-            this.dataGridViewClientes.Size = new System.Drawing.Size(938, 399);
+            this.dataGridViewClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewClientes.Size = new System.Drawing.Size(704, 324);
             this.dataGridViewClientes.TabIndex = 7;
             this.dataGridViewClientes.Visible = false;
             // 
             // btnExcluir
             // 
             this.btnExcluir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluir.Location = new System.Drawing.Point(501, 475);
-            this.btnExcluir.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExcluir.Location = new System.Drawing.Point(376, 386);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(211, 57);
+            this.btnExcluir.Size = new System.Drawing.Size(158, 46);
             this.btnExcluir.TabIndex = 10;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -78,10 +81,9 @@
             // btnAlterar_AbrirForm
             // 
             this.btnAlterar_AbrirForm.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar_AbrirForm.Location = new System.Drawing.Point(252, 475);
-            this.btnAlterar_AbrirForm.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAlterar_AbrirForm.Location = new System.Drawing.Point(189, 386);
             this.btnAlterar_AbrirForm.Name = "btnAlterar_AbrirForm";
-            this.btnAlterar_AbrirForm.Size = new System.Drawing.Size(211, 57);
+            this.btnAlterar_AbrirForm.Size = new System.Drawing.Size(158, 46);
             this.btnAlterar_AbrirForm.TabIndex = 9;
             this.btnAlterar_AbrirForm.Text = "Alterar";
             this.btnAlterar_AbrirForm.UseVisualStyleBackColor = true;
@@ -89,13 +91,14 @@
             // 
             // FormLista
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(981, 545);
+            this.ClientSize = new System.Drawing.Size(736, 443);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAlterar_AbrirForm);
             this.Controls.Add(this.label_listaclientes);
             this.Controls.Add(this.dataGridViewClientes);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FormLista";
             this.Text = "Lista de Clientes";
             this.Load += new System.EventHandler(this.FormLista_Load);

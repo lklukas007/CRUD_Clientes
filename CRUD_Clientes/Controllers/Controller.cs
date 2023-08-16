@@ -127,8 +127,8 @@ namespace CRUD_Clientes.Controllers
                 }
             }
 
-            // Validação do Genero:
-            public int RetornaGenero(Genero_Model genero)
+            // Validação do Descricao Genero:
+            public int RetornaCodigoGenero(Genero_Model genero)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -158,7 +158,7 @@ namespace CRUD_Clientes.Controllers
 
 
             // Carregar cliente tela de alteração:
-            public void RetornaClienteAlteracao(Cliente_Model cliente)
+            public Cliente_Model RetornaClienteAlteracao(int codigocliente)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -170,9 +170,28 @@ namespace CRUD_Clientes.Controllers
                     {
                         command.CommandTimeout = 3600;
 
-                        command.Parameters.AddWithValue("@CodigoCliente", cliente.CodigoCliente);
+                        command.Parameters.AddWithValue("@CodigoCliente", codigocliente);
 
-                        command.ExecuteScalar();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read()) // Verifica se há uma linha para ler
+                            {
+                                Cliente_Model cliente = new Cliente_Model();
+                                cliente.CodigoCliente = reader.GetInt32(reader.GetOrdinal("Codigo"));
+                                cliente.Nome = reader.GetString(reader.GetOrdinal("Nome"));
+                                cliente.Sobrenome = reader.GetString(reader.GetOrdinal("Sobrenome"));
+                                cliente.DataNascimento = reader.GetDateTime(reader.GetOrdinal("Datanascimento"));
+                                cliente.Endereco = reader.GetString(reader.GetOrdinal("Endereco"));
+                                cliente.Numero = reader.GetString(reader.GetOrdinal("Numero_Endereco"));
+                                cliente.Codigo_Genero = reader.GetInt32(reader.GetOrdinal("Codigo_Genero"));
+
+                                return cliente;
+                            }
+                            else
+                            {
+                                return null; // Não encontrou cliente com o código especificado
+                            }
+                        }
                     }
                 }
             }

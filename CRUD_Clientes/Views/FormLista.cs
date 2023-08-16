@@ -26,10 +26,10 @@ namespace CRUD_Clientes.Views
             dataGridViewClientes.ColumnCount = 4; // Defina o número de colunas
 
             // Defina os cabeçalhos das colunas
-            dataGridViewClientes.Columns[0].Name = "Código Cliente";
+            dataGridViewClientes.Columns[0].Name = "CodigoCliente";
             dataGridViewClientes.Columns[1].Name = "Nome Completo";
             dataGridViewClientes.Columns[2].Name = "Idade";
-            dataGridViewClientes.Columns[3].Name = "Gënero";
+            dataGridViewClientes.Columns[3].Name = "Genero";
             CarregarLista();
         }
         public void CarregarLista()
@@ -66,14 +66,15 @@ namespace CRUD_Clientes.Views
                 DataGridViewRow selectedRow = dataGridViewClientes.SelectedRows[0];
 
                 alteraCliente.CodigoCliente = Convert.ToInt32(selectedRow.Cells["CodigoCliente"].Value);
-
+                int codigocliente = alteraCliente.CodigoCliente;
+                FormAlterar formAlterar = new FormAlterar(codigocliente);
+                formAlterar.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Selecione um cliente para realizar a alteração!");
             }
-            FormAlterar formAlterar = new FormAlterar();
-            formAlterar.ShowDialog();
+            
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)

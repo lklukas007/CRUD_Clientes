@@ -52,14 +52,14 @@ namespace CRUD_Clientes.Views
                 Cliente_Model novoCliente = new Cliente_Model();
 
                 // Capturando valores da TextBox
-                if (!string.IsNullOrEmpty(novoCliente.Nome))
+                if (!string.IsNullOrEmpty(txtNome.Text))
                 {
                     novoCliente.Nome = txtNome.Text;
                 }
                 else
                 {
                     MessageBox.Show("Campo nome é obrigatório.");
-                    return;
+                    return; // Encerra o if para aguardar campo obrigatorio ser preenchido
                 }
                 novoCliente.Sobrenome = txtSobrenome.Text;
                 novoCliente.Endereco = txtEndereco.Text;
@@ -70,7 +70,7 @@ namespace CRUD_Clientes.Views
 
                 Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
 
-                int codigoGenero = funcoesCrud.RetornaGenero(genero);
+                int codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
 
                 novoCliente.Codigo_Genero = codigoGenero;
                 

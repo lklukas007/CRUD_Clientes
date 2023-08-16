@@ -81,6 +81,8 @@ namespace CRUD_Clientes.Views
         {
             if (dataGridViewClientes.SelectedRows.Count > 0)
             {
+                // Criando uma instância da classe Funcoes_CRUD
+                var funcoesCrud = new Funcoes_CRUD();
                 // Exibe uma MessageBox de confirmação
                 DialogResult result = MessageBox.Show("Deseja realmente excluir este cadastro?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 // Crindo um objeto Cliente
@@ -88,10 +90,11 @@ namespace CRUD_Clientes.Views
 
                 DataGridViewRow selectedRow = dataGridViewClientes.SelectedRows[0];
 
-                alteraCliente.CodigoCliente = Convert.ToInt32(selectedRow.Cells["Código Cliente"].Value);
+                alteraCliente.CodigoCliente = Convert.ToInt32(selectedRow.Cells["CodigoCliente"].Value);
                 if (result == DialogResult.Yes)
                 {
-
+                    funcoesCrud.ExcluirCliente(alteraCliente.CodigoCliente);
+                    CarregarLista();
                 }
                 else
                 {

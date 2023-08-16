@@ -31,10 +31,18 @@ namespace CRUD_Clientes.Views
             // Chamando o método RetornaComboBox da instância de Funcoes_CRUD
             List<Genero_Model> listaGeneros = funcoesCrud.RetornaComboBox();
 
+            Cliente_Model cliente = new Cliente_Model();
+            cliente = funcoesCrud.RetornaClienteAlteracao(codigocliente);
+
             // Adiciona os itens da listaGeneros no ComboBox
             foreach (Genero_Model genero in listaGeneros)
             {
                 comboBox_Genero.Items.Add(genero.Descricao);
+
+                if (cliente.Codigo_Genero == genero.Codigo)
+                {
+                    comboBox_Genero.SelectedItem = genero.Descricao;
+                }
             }
 
         }
@@ -52,10 +60,8 @@ namespace CRUD_Clientes.Views
             txtSobrenome.Text = AlteraCliente.Sobrenome;
             txtEndereco.Text = AlteraCliente.Endereco;
             txtNumero.Text = AlteraCliente.Numero;
-            txtCodigoCliente.Text = codigocliente.ToString();
+            labelCodigoCliente.Text = "Código Cliente: " + codigocliente.ToString();
             txtDatanascimento.Text = AlteraCliente.DataNascimento.ToString("dd/MM/yyyy");
-            comboBox_Genero.Items.Add(AlteraCliente.Codigo_Genero);
-
             
         }
 

@@ -108,7 +108,7 @@ namespace CRUD_Clientes.Controllers
             }
 
             // Excluir:
-            public void ExcluirCliente(Cliente_Model cliente)
+            public void ExcluirCliente(int codigocliente)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -120,7 +120,7 @@ namespace CRUD_Clientes.Controllers
                     {
                         command.CommandTimeout = 3600;
 
-                        command.Parameters.AddWithValue("@CodigoCliente", cliente.CodigoCliente);
+                        command.Parameters.AddWithValue("@CodigoCliente", codigocliente);
 
                         command.ExecuteNonQuery();
                     }

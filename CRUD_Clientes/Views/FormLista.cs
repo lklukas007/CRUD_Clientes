@@ -95,6 +95,7 @@ namespace CRUD_Clientes.Views
                 {
                     funcoesCrud.ExcluirCliente(alteraCliente.CodigoCliente);
                     CarregarLista();
+                    MessageBox.Show("Cadastro excluido com sucesso!");
                 }
                 else
                 {

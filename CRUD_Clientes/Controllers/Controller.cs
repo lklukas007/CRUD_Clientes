@@ -9,6 +9,8 @@ using System.Data.SqlClient;
 using CRUD_Clientes.DB;
 using CRUD_Clientes.Views;
 using System.Windows.Forms;
+using System.Transactions;
+using System.Data.Common;
 
 namespace CRUD_Clientes.Controllers
 {
@@ -28,7 +30,7 @@ namespace CRUD_Clientes.Controllers
                     connection.Open();
 
                     string query = "INSERT INTO clientes (Nome, Sobrenome, DataNascimento, Endereco, Numero_Endereco, Codigo_Genero) " +
-                                   "VALUES (@Nome, @Sobrenome, @DataNascimento, @Endereco, @Numero, @Codigo_Genero)";
+                                   "VALUES (@Nome, @Sobrenome, @DataNascimento, @Endereco, @Numero_Endereco, @Codigo_Genero)";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -38,7 +40,7 @@ namespace CRUD_Clientes.Controllers
                         command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
                         command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
                         command.Parameters.AddWithValue("@Endereco", cliente.Endereco);
-                        command.Parameters.AddWithValue("@Numero", cliente.Numero);
+                        command.Parameters.AddWithValue("@Numero_Endereco", cliente.Numero);
                         command.Parameters.AddWithValue("@Codigo_Genero", cliente.Codigo_Genero);
 
                         command.ExecuteNonQuery();
@@ -88,23 +90,37 @@ namespace CRUD_Clientes.Controllers
                 {
                     connection.Open();
 
-                    string query = "UPDATE Clientes SET Nome = @Nome, Sobrenome = @Sobrenome, Datanascimento = @Datanascimento, Endereco = @Endereco, Numero_Endereco = @Numero_Endereco, Codigo_Genero = @Codigo_Genero WHERE Codigo = @CodigoCliente";
+                    SqlTransaction transaction = connection.BeginTransaction();
 
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    try
                     {
-                        command.CommandTimeout = 3600;
 
-                        command.Parameters.AddWithValue("@CodigoCliente", cliente.CodigoCliente);
-                        command.Parameters.AddWithValue("@Nome", cliente.Nome);
-                        command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
-                        command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
-                        command.Parameters.AddWithValue("@Endereco", cliente.Endereco);
-                        command.Parameters.AddWithValue("@Numero", cliente.Numero);
-                        command.Parameters.AddWithValue("@Codigo_Genero", cliente.Codigo_Genero);
+                        string query = "UPDATE Clientes SET Nome = @Nome, Sobrenome = @Sobrenome, Datanascimento = @DataNascimento, Endereco = @Endereco, Numero_Endereco = @Numero_Endereco, Codigo_Genero = @Codigo_Genero WHERE Codigo = @CodigoCliente";
 
-                        command.ExecuteNonQuery();
+                        using (SqlCommand command = new SqlCommand(query, connection))
+                        {
+                            command.Transaction = transaction;
+                            command.CommandTimeout = 3600;
+
+                            command.Parameters.AddWithValue("@CodigoCliente", cliente.CodigoCliente);
+                            command.Parameters.AddWithValue("@Nome", cliente.Nome);
+                            command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
+                            command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);
+                            command.Parameters.AddWithValue("@Endereco", cliente.Endereco);
+                            command.Parameters.AddWithValue("@Numero_Endereco", cliente.Numero);
+                            command.Parameters.AddWithValue("@Codigo_Genero", cliente.Codigo_Genero);
+
+                            command.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Erro ao atualiar o cadastro: " + ex.Message);
                     }
                 }
+                
             }
 
             // Excluir:

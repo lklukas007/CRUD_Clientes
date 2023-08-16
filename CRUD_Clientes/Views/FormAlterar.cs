@@ -62,7 +62,7 @@ namespace CRUD_Clientes.Views
             txtNumero.Text = AlteraCliente.Numero;
             labelCodigoCliente.Text = "Código Cliente: " + codigocliente.ToString();
             txtDatanascimento.Text = AlteraCliente.DataNascimento.ToString("dd/MM/yyyy");
-            
+
         }
 
         private void btnRealizaAlteracao_Click(object sender, EventArgs e)
@@ -81,9 +81,20 @@ namespace CRUD_Clientes.Views
                 MessageBox.Show("Campo nome é obrigatório.");
                 return; // Encerra o if para aguardar campo obrigatorio ser preenchido
             }
+            alteraCliente.CodigoCliente = codigocliente;
             alteraCliente.Sobrenome = txtSobrenome.Text;
             alteraCliente.Endereco = txtEndereco.Text;
             alteraCliente.Numero = txtNumero.Text;
+            // Convertendo a string da TextBox para DateTime
+            if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
+            {
+                alteraCliente.DataNascimento = dataNascimento;
+            }
+            else
+            {
+                MessageBox.Show("Data de nascimento inválida");
+                return; // Sai do evento, pois a data é inválida
+            }
 
             // Tratamento genero da combobox, desde que o objeto nao seja nulo, ele vai converter: tostring
             string generoSelecionado = comboBox_Genero.SelectedItem?.ToString();
@@ -94,16 +105,20 @@ namespace CRUD_Clientes.Views
 
             alteraCliente.Codigo_Genero = codigoGenero;
 
-            // Chamando o método InserirCliente da instância de Funcoes_CRUD
-            funcoesCrud.EditarCliente(alteraCliente);
+            // Exibe uma MessageBox de confirmação
+            DialogResult result = MessageBox.Show("Deseja salvar alteração?", "Confirmação de Alteração", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            //Limpar campos:
-            txtNome.Text = "";
-            txtSobrenome.Text = "";
-            txtEndereco.Text = "";
-            txtNumero.Text = "";
-            txtDatanascimento.Text = "";
-            comboBox_Genero.SelectedItem = null;
+            // Chamando o método EditarCliente da instância de Funcoes_CRUD
+            if (result == DialogResult.Yes)
+            {
+                funcoesCrud.EditarCliente(alteraCliente);
+                MessageBox.Show("Alteração salva com sucesso!");
+                this.Close();
+            }
+            else
+            {
+                return;
+            }
 
         }
     }

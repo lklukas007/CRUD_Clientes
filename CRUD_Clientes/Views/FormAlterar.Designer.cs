@@ -75,6 +75,7 @@
             this.btnRealizaAlteracao.TabIndex = 20;
             this.btnRealizaAlteracao.Text = "Alterar";
             this.btnRealizaAlteracao.UseVisualStyleBackColor = true;
+            this.btnRealizaAlteracao.Click += new System.EventHandler(this.btnRealizaAlteracao_Click);
             // 
             // txtEndereco
             // 

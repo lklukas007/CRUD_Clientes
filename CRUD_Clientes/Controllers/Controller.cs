@@ -88,13 +88,13 @@ namespace CRUD_Clientes.Controllers
                 {
                     connection.Open();
 
-                    string query = "INSERT INTO clientes (Nome, Sobrenome, DataNascimento, Endereco, Numero, Codigo_Genero) " +
-                                   "VALUES (@Nome, @Sobrenome, @DataNascimento, @Endereco, @Numero, @Codigo_Genero)";
+                    string query = "UPDATE Clientes SET Nome = @Nome, Sobrenome = @Sobrenome, Datanascimento = @Datanascimento, Endereco = @Endereco, Numero_Endereco = @Numero_Endereco, Codigo_Genero = @Codigo_Genero WHERE Codigo = @CodigoCliente";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         command.CommandTimeout = 3600;
 
+                        command.Parameters.AddWithValue("@CodigoCliente", cliente.CodigoCliente);
                         command.Parameters.AddWithValue("@Nome", cliente.Nome);
                         command.Parameters.AddWithValue("@Sobrenome", cliente.Sobrenome);
                         command.Parameters.AddWithValue("@DataNascimento", cliente.DataNascimento);

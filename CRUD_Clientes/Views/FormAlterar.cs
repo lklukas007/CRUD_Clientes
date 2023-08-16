@@ -65,5 +65,46 @@ namespace CRUD_Clientes.Views
             
         }
 
+        private void btnRealizaAlteracao_Click(object sender, EventArgs e)
+        {
+            var funcoesCrud = new Funcoes_CRUD();
+
+            Cliente_Model alteraCliente = new Cliente_Model();
+
+            // Capturando valores da TextBox
+            if (!string.IsNullOrEmpty(txtNome.Text))
+            {
+                alteraCliente.Nome = txtNome.Text;
+            }
+            else
+            {
+                MessageBox.Show("Campo nome é obrigatório.");
+                return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+            }
+            alteraCliente.Sobrenome = txtSobrenome.Text;
+            alteraCliente.Endereco = txtEndereco.Text;
+            alteraCliente.Numero = txtNumero.Text;
+
+            // Tratamento genero da combobox, desde que o objeto nao seja nulo, ele vai converter: tostring
+            string generoSelecionado = comboBox_Genero.SelectedItem?.ToString();
+
+            Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
+
+            int codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
+
+            alteraCliente.Codigo_Genero = codigoGenero;
+
+            // Chamando o método InserirCliente da instância de Funcoes_CRUD
+            funcoesCrud.EditarCliente(alteraCliente);
+
+            //Limpar campos:
+            txtNome.Text = "";
+            txtSobrenome.Text = "";
+            txtEndereco.Text = "";
+            txtNumero.Text = "";
+            txtDatanascimento.Text = "";
+            comboBox_Genero.SelectedItem = null;
+
+        }
     }
 }

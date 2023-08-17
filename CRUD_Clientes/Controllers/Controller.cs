@@ -1,20 +1,14 @@
-﻿using CRUD_Clientes.Models;
-using CRUD_Clientes.Controllers;
+﻿using CRUD_Clientes.DB;
+using CRUD_Clientes.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using CRUD_Clientes.DB;
-using CRUD_Clientes.Views;
 using System.Windows.Forms;
-using System.Transactions;
-using System.Data.Common;
 
 namespace CRUD_Clientes.Controllers
 {
-    public class Controller {
+    public class Controller
+    {
 
         public class Funcoes_CRUD
         {
@@ -57,7 +51,7 @@ namespace CRUD_Clientes.Controllers
                 {
                     connection.Open();
 
-                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome + ' ' + C.Sobrenome AS NomeCompleto, DATEDIFF(YEAR, C.Datanascimento, GETDATE()) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero";
+                    string query = "SELECT C.Codigo AS CodigoCliente, CASE WHEN C.Nome + ' ' + C.Sobrenome IS NULL THEN C.Nome ELSE C.Nome + ' ' + C.Sobrenome END AS NomeCompleto, DATEDIFF(YEAR, C.Datanascimento, GETDATE()) AS Idade, G.Descricao FROM Clientes C LEFT JOIN Genero G ON G.Codigo = C.Codigo_Genero";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -120,7 +114,7 @@ namespace CRUD_Clientes.Controllers
                         MessageBox.Show("Erro ao atualiar o cadastro: " + ex.Message);
                     }
                 }
-                
+
             }
 
             // Excluir:
@@ -144,7 +138,7 @@ namespace CRUD_Clientes.Controllers
             }
 
             // Validação do Descricao Genero:
-            public int RetornaCodigoGenero(Genero_Model genero)
+            public int? RetornaCodigoGenero(Genero_Model genero)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -162,11 +156,11 @@ namespace CRUD_Clientes.Controllers
 
                         if (result != null && int.TryParse(result.ToString(), out int codigoGenero))
                         {
-                            return codigoGenero; // Retorna o código do gênero válido
+                            return codigoGenero;
                         }
                         else
                         {
-                            return -1; // Retorna um valor de código inválido, indicando que o gênero não foi encontrado ou ocorreu um erro de conversão
+                            return null;
                         }
                     }
                 }

@@ -1,4 +1,5 @@
 ﻿using CRUD_Clientes.Models;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,7 +62,8 @@ namespace CRUD_Clientes.Views
             txtEndereco.Text = AlteraCliente.Endereco;
             txtNumero.Text = AlteraCliente.Numero;
             labelCodigoCliente.Text = "Código Cliente: " + codigocliente.ToString();
-            txtDatanascimento.Text = AlteraCliente.DataNascimento.ToString("dd/MM/yyyy");
+            txtDatanascimento.Text = AlteraCliente.DataNascimento.Value.ToString("dd/MM/yyyy");
+            
 
         }
 
@@ -92,8 +94,7 @@ namespace CRUD_Clientes.Views
             }
             else
             {
-                MessageBox.Show("Data de nascimento inválida");
-                return; // Sai do evento, pois a data é inválida
+                txtDatanascimento.Text = null;
             }
 
             // Tratamento genero da combobox, desde que o objeto nao seja nulo, ele vai converter: tostring
@@ -101,7 +102,7 @@ namespace CRUD_Clientes.Views
 
             Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
 
-            int codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
+            int? codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
 
             alteraCliente.Codigo_Genero = codigoGenero;
 

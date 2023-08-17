@@ -61,32 +61,50 @@ namespace CRUD_Clientes.Views
                     MessageBox.Show("Campo nome é obrigatório.");
                     return; // Encerra o if para aguardar campo obrigatorio ser preenchido
                 }
-                novoCliente.Sobrenome = txtSobrenome.Text;
-                novoCliente.Endereco = txtEndereco.Text;
-                novoCliente.Numero = txtNumero.Text;
+
 
                 // Tratamento genero da combobox, desde que o objeto nao seja nulo, ele vai converter: tostring
+                int? codigoGenero;
                 string generoSelecionado = comboBox_Genero.SelectedItem?.ToString();
-
-                Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
-
-                int codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
-
-                novoCliente.Codigo_Genero = codigoGenero;
-                
-
-
-                // Convertendo a string da TextBox para DateTime
-                if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
+                if(generoSelecionado != null || !string.IsNullOrEmpty(generoSelecionado))
                 {
-                    novoCliente.DataNascimento = dataNascimento;
+                    Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
+
+                    codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
                 }
                 else
                 {
-                    MessageBox.Show("Data de nascimento inválida");
-                    return; // Sai do evento, pois a data é inválida
+                    codigoGenero = null;
                 }
 
+                
+                
+
+                // Tratando e Capturando valores da TextBox
+                if (!string.IsNullOrEmpty(txtSobrenome.Text) || !string.IsNullOrEmpty(txtEndereco.Text) || !string.IsNullOrEmpty(txtNumero.Text))
+                {
+                    novoCliente.Sobrenome = txtSobrenome.Text;
+                    novoCliente.Endereco = txtEndereco.Text;
+                    novoCliente.Numero = txtNumero.Text;
+                    novoCliente.Codigo_Genero = codigoGenero;
+                    // Convertendo a string da TextBox para DateTime
+                    if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
+                    {
+                        novoCliente.DataNascimento = dataNascimento;
+                    }
+                    else
+                    {
+                        novoCliente.DataNascimento = null;
+                    }
+                }
+                else
+                {
+                    txtNome.Text = "";
+                    txtSobrenome.Text = "";
+                    txtEndereco.Text = "";
+                    txtNumero.Text = "";
+                    txtDatanascimento.Text = "";
+                }
 
                 // Chamando o método InserirCliente da instância de Funcoes_CRUD
                 funcoesCrud.InserirCliente(novoCliente);

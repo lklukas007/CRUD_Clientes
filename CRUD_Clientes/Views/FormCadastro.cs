@@ -58,53 +58,70 @@ namespace CRUD_Clientes.Views
                 }
                 else
                 {
-                    MessageBox.Show("Campo nome é obrigatório.");
+                    MessageBox.Show("Campo Nome é obrigatório.");
+                    return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+                }
+
+                // Capturando valores da TextBox
+                if (!string.IsNullOrEmpty(txtSobrenome.Text))
+                {
+                    novoCliente.Sobrenome = txtSobrenome.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Campo Sobrenome é obrigatório.");
+                    return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+                }
+
+                // Capturando valores da TextBox
+                if (!string.IsNullOrEmpty(txtEndereco.Text))
+                {
+                    novoCliente.Endereco = txtEndereco.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Campo Endereco é obrigatório.");
+                    return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+                }
+
+                // Capturando valores da TextBox
+                if (!string.IsNullOrEmpty(txtNumero.Text))
+                {
+                    novoCliente.Numero = txtNumero.Text;
+                }
+                else
+                {
+                    MessageBox.Show("Campo Número é obrigatório.");
                     return; // Encerra o if para aguardar campo obrigatorio ser preenchido
                 }
 
 
                 // Tratamento genero da combobox, desde que o objeto nao seja nulo, ele vai converter: tostring
-                int? codigoGenero;
                 string generoSelecionado = comboBox_Genero.SelectedItem?.ToString();
                 if(generoSelecionado != null || !string.IsNullOrEmpty(generoSelecionado))
                 {
                     Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
 
-                    codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
-                }
-                else
-                {
-                    codigoGenero = null;
-                }
-
-                
-                
-
-                // Tratando e Capturando valores da TextBox
-                if (!string.IsNullOrEmpty(txtSobrenome.Text) || !string.IsNullOrEmpty(txtEndereco.Text) || !string.IsNullOrEmpty(txtNumero.Text))
-                {
-                    novoCliente.Sobrenome = txtSobrenome.Text;
-                    novoCliente.Endereco = txtEndereco.Text;
-                    novoCliente.Numero = txtNumero.Text;
+                    int codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
                     novoCliente.Codigo_Genero = codigoGenero;
-                    // Convertendo a string da TextBox para DateTime
-                    if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
-                    {
-                        novoCliente.DataNascimento = dataNascimento;
-                    }
-                    else
-                    {
-                        novoCliente.DataNascimento = null;
-                    }
                 }
                 else
                 {
-                    txtNome.Text = "";
-                    txtSobrenome.Text = "";
-                    txtEndereco.Text = "";
-                    txtNumero.Text = "";
-                    txtDatanascimento.Text = "";
+                    MessageBox.Show("Campo Gênero é obrigatório.");
+                    return; // Encerra o if para aguardar campo obrigatorio ser preenchido
                 }
+
+                // Convertendo a string da TextBox para DateTime
+                if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
+                {
+                    novoCliente.DataNascimento = dataNascimento;
+                }
+                else
+                {
+                    MessageBox.Show("Campo Data de nascimento é obrigatório.");
+                    return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+                }
+
 
                 // Chamando o método InserirCliente da instância de Funcoes_CRUD
                 funcoesCrud.InserirCliente(novoCliente);

@@ -138,7 +138,7 @@ namespace CRUD_Clientes.Controllers
             }
 
             // Validação do Descricao Genero:
-            public int? RetornaCodigoGenero(Genero_Model genero)
+            public int RetornaCodigoGenero(Genero_Model genero)
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -160,7 +160,7 @@ namespace CRUD_Clientes.Controllers
                         }
                         else
                         {
-                            return null;
+                            return -1;
                         }
                     }
                 }

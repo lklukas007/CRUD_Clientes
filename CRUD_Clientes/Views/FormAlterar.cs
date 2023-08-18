@@ -1,13 +1,6 @@
 ﻿using CRUD_Clientes.Models;
-using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static CRUD_Clientes.Controllers.Controller;
 
@@ -62,8 +55,8 @@ namespace CRUD_Clientes.Views
             txtEndereco.Text = AlteraCliente.Endereco;
             txtNumero.Text = AlteraCliente.Numero;
             labelCodigoCliente.Text = "Código Cliente: " + codigocliente.ToString();
-            txtDatanascimento.Text = AlteraCliente.DataNascimento.Value.ToString("dd/MM/yyyy");
-            
+            txtDatanascimento.Text = AlteraCliente.DataNascimento.ToString("dd/MM/yyyy");
+
 
         }
 
@@ -80,13 +73,43 @@ namespace CRUD_Clientes.Views
             }
             else
             {
-                MessageBox.Show("Campo nome é obrigatório.");
+                MessageBox.Show("Campo Nome é obrigatório.");
                 return; // Encerra o if para aguardar campo obrigatorio ser preenchido
             }
-            alteraCliente.CodigoCliente = codigocliente;
-            alteraCliente.Sobrenome = txtSobrenome.Text;
-            alteraCliente.Endereco = txtEndereco.Text;
-            alteraCliente.Numero = txtNumero.Text;
+
+            // Capturando valores da TextBox
+            if (!string.IsNullOrEmpty(txtSobrenome.Text))
+            {
+                alteraCliente.Sobrenome = txtSobrenome.Text;
+            }
+            else
+            {
+                MessageBox.Show("Campo Sobrenome é obrigatório.");
+                return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+            }
+
+            // Capturando valores da TextBox
+            if (!string.IsNullOrEmpty(txtEndereco.Text))
+            {
+                alteraCliente.Endereco = txtEndereco.Text;
+            }
+            else
+            {
+                MessageBox.Show("Campo Endereco é obrigatório.");
+                return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+            }
+
+            // Capturando valores da TextBox
+            if (!string.IsNullOrEmpty(txtNumero.Text))
+            {
+                alteraCliente.Numero = txtNumero.Text;
+            }
+            else
+            {
+                MessageBox.Show("Campo Número é obrigatório.");
+                return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+            }
+
             // Convertendo a string da TextBox para DateTime
             if (DateTime.TryParse(txtDatanascimento.Text, out DateTime dataNascimento))
             {
@@ -94,17 +117,26 @@ namespace CRUD_Clientes.Views
             }
             else
             {
-                txtDatanascimento.Text = null;
+                MessageBox.Show("Campo Data de nascimento é obrigatório.");
+                return; // Encerra o if para aguardar campo obrigatorio ser preenchido
             }
 
+
+            alteraCliente.CodigoCliente = codigocliente;
             // Tratamento genero da combobox, desde que o objeto nao seja nulo, ele vai converter: tostring
             string generoSelecionado = comboBox_Genero.SelectedItem?.ToString();
+            if (generoSelecionado != null || !string.IsNullOrEmpty(generoSelecionado))
+            {
+                Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
 
-            Genero_Model genero = new Genero_Model { Descricao = generoSelecionado }; // Crie um objeto Genero com a descrição selecionada
-
-            int? codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
-
-            alteraCliente.Codigo_Genero = codigoGenero;
+                int codigoGenero = funcoesCrud.RetornaCodigoGenero(genero);
+                alteraCliente.Codigo_Genero = codigoGenero;
+            }
+            else
+            {
+                MessageBox.Show("Campo Gênero é obrigatório.");
+                return; // Encerra o if para aguardar campo obrigatorio ser preenchido
+            }
 
             // Exibe uma MessageBox de confirmação
             DialogResult result = MessageBox.Show("Deseja salvar alteração?", "Confirmação de Alteração", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

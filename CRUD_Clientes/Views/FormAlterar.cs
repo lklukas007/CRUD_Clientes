@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using static CRUD_Clientes.Controllers.Controller;
+using CRUD_Clientes.Controllers;
 
 namespace CRUD_Clientes.Views
 {

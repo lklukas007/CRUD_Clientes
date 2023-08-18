@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static CRUD_Clientes.Controllers.Controller;
+using CRUD_Clientes.Controllers;
 
 namespace CRUD_Clientes.Views
 {

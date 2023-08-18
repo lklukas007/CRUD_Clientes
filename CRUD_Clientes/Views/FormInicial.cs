@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using CRUD_Clientes.DB;
 using CRUD_Clientes.Models;
 using System.Reflection;
-using static CRUD_Clientes.Controllers.Controller;
+using CRUD_Clientes.Controllers;
 
 namespace CRUD_Clientes
 {

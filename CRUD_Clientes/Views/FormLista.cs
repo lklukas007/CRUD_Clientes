@@ -1,14 +1,8 @@
-﻿using CRUD_Clientes.Models;
+﻿using CRUD_Clientes.Controllers;
+using CRUD_Clientes.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CRUD_Clientes.Controllers;
 
 namespace CRUD_Clientes.Views
 {
@@ -17,7 +11,6 @@ namespace CRUD_Clientes.Views
         public FormLista()
         {
             InitializeComponent();
-            
         }
 
 
@@ -74,7 +67,7 @@ namespace CRUD_Clientes.Views
             {
                 MessageBox.Show("Selecione um cliente para realizar a alteração!");
             }
-            
+
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -108,12 +101,17 @@ namespace CRUD_Clientes.Views
             }
         }
 
-        public void CarregarListaFiltroNome(string nomebusca)
+        public void CarregarListaFiltro(string nomebusca)
         {
             // Criando uma instância da classe Funcoes_CRUD
             var funcoesCrud = new Funcoes_CRUD();
 
             List<ListaCliente_Model> listaClientes = funcoesCrud.BuscarClienteFiltro(nomebusca);
+
+            if (string.IsNullOrEmpty(nomebusca))
+            {
+                CarregarListaTodos();
+            }
 
             dataGridViewClientes.Rows.Clear();
 
@@ -126,12 +124,38 @@ namespace CRUD_Clientes.Views
                     cliente.DescricaoGenero
                 );
             }
+            // Limpar campo de busca
+            txtBuscaNome.Text = "";
         }
+
+        private string valorOriginalTextBox = "";
 
         private void btnRealizaBusca_Click(object sender, EventArgs e)
         {
-            string nomebusca = txtBuscaNome.Text;
-            CarregarListaFiltroNome(nomebusca);
+            // Salvar o valor original da TextBox
+            valorOriginalTextBox = txtBuscaNome.Text;
+            // Atribui o valor preenchido no text box de busca para a variavel nomebusca
+            string nomebusca = txtBuscaNome.Text.Trim().Replace("\r\n", "");
+
+            // Chama a funcao que vai buscar com filtro
+            CarregarListaFiltro(nomebusca);            
+
+            // Limpar string nomebusca:
+            nomebusca = "";
         }
+        private void txtBuscaNome_TextChanged(object sender, EventArgs e)
+        {
+            valorOriginalTextBox = txtBuscaNome.Text;
+        }
+
+        private void txtBuscaNome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                // Simular o clique no botão
+                btnRealizaBusca.PerformClick();
+            }
+        }
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using CRUD_Clientes.Controllers;
+using System.Linq;
 
 namespace CRUD_Clientes.Views
 {
@@ -146,6 +147,14 @@ namespace CRUD_Clientes.Views
             {
                 funcoesCrud.EditarCliente(alteraCliente);
                 MessageBox.Show("Alteração salva com sucesso!");
+                // Obtendo a instância do FormLista se já estiver aberta
+                FormLista formLista = Application.OpenForms.OfType<FormLista>().FirstOrDefault();
+                // Atualizando o FormLista, se encontrado
+                if (formLista != null)
+                {
+                    formLista.CarregarListaTodos(); // Suponha que você tenha um método AtualizarDados() para atualizar a lista de clientes.
+                }
+
                 this.Close();
             }
             else

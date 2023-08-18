@@ -245,7 +245,7 @@ namespace CRUD_Clientes.Controllers
             {
                 connection.Open();
 
-                string query = "SELECT C.Codigo AS CodigoCliente, C.Nome + ' ' + C.Sobrenome AS NomeCompleto, DATEDIFF( YEAR, C.Datanascimento, GETDATE() ) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero WHERE Nome LIKE '%' + @TextoBusca + '%' OR Sobrenome LIKE '%' + @TextoBusca + '%' OR G.Descricao LIKE'%' + @TextoBusca + '%' OR C.Codigo LIKE'%' + @TextoBusca + '%' OR Endereco LIKE'%' + @TextoBusca + '%' OR Numero_Endereco LIKE'%' + @TextoBusca + '%' OR Datanascimento LIKE'%' + @TextoBusca + '%'";
+                string query = "SELECT C.Codigo AS CodigoCliente, C.Nome + ' ' + C.Sobrenome AS NomeCompleto, Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero INNER JOIN ( SELECT Codigo, DATEDIFF( YEAR, Datanascimento, GETDATE() ) AS Idade FROM Clientes ) ClienteIdade ON ClienteIdade.Codigo = C.CODIGO WHERE C.Codigo LIKE '%' + @TextoBusca + '%' OR Nome LIKE '%' + @TextoBusca + '%' OR Sobrenome LIKE '%' + @TextoBusca + '%' OR G.Descricao LIKE '%' + @TextoBusca + '%' OR Idade LIKE '%' + @TextoBusca + '%'";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {

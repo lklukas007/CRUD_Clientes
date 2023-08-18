@@ -44,24 +44,25 @@
             this.dataGridViewClientes.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridViewClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewClientes.Enabled = false;
-            this.dataGridViewClientes.Location = new System.Drawing.Point(12, 52);
-            this.dataGridViewClientes.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridViewClientes.Location = new System.Drawing.Point(16, 64);
+            this.dataGridViewClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridViewClientes.MultiSelect = false;
             this.dataGridViewClientes.Name = "dataGridViewClientes";
             this.dataGridViewClientes.ReadOnly = true;
             this.dataGridViewClientes.RowHeadersWidth = 51;
             this.dataGridViewClientes.RowTemplate.Height = 24;
             this.dataGridViewClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewClientes.Size = new System.Drawing.Size(713, 329);
+            this.dataGridViewClientes.Size = new System.Drawing.Size(951, 405);
             this.dataGridViewClientes.TabIndex = 7;
             this.dataGridViewClientes.Visible = false;
             // 
             // btnExcluir
             // 
             this.btnExcluir.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExcluir.Location = new System.Drawing.Point(373, 386);
+            this.btnExcluir.Location = new System.Drawing.Point(497, 475);
+            this.btnExcluir.Margin = new System.Windows.Forms.Padding(4);
             this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(158, 46);
+            this.btnExcluir.Size = new System.Drawing.Size(211, 57);
             this.btnExcluir.TabIndex = 10;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
@@ -70,9 +71,10 @@
             // btnAlterar_AbrirForm
             // 
             this.btnAlterar_AbrirForm.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlterar_AbrirForm.Location = new System.Drawing.Point(186, 386);
+            this.btnAlterar_AbrirForm.Location = new System.Drawing.Point(248, 475);
+            this.btnAlterar_AbrirForm.Margin = new System.Windows.Forms.Padding(4);
             this.btnAlterar_AbrirForm.Name = "btnAlterar_AbrirForm";
-            this.btnAlterar_AbrirForm.Size = new System.Drawing.Size(158, 46);
+            this.btnAlterar_AbrirForm.Size = new System.Drawing.Size(211, 57);
             this.btnAlterar_AbrirForm.TabIndex = 9;
             this.btnAlterar_AbrirForm.Text = "Alterar";
             this.btnAlterar_AbrirForm.UseVisualStyleBackColor = true;
@@ -81,10 +83,10 @@
             // btnRealizaBusca
             // 
             this.btnRealizaBusca.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRealizaBusca.Location = new System.Drawing.Point(616, 7);
-            this.btnRealizaBusca.Margin = new System.Windows.Forms.Padding(2);
+            this.btnRealizaBusca.Location = new System.Drawing.Point(821, 9);
+            this.btnRealizaBusca.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRealizaBusca.Name = "btnRealizaBusca";
-            this.btnRealizaBusca.Size = new System.Drawing.Size(100, 27);
+            this.btnRealizaBusca.Size = new System.Drawing.Size(133, 33);
             this.btnRealizaBusca.TabIndex = 22;
             this.btnRealizaBusca.Text = "Buscar";
             this.btnRealizaBusca.UseVisualStyleBackColor = true;
@@ -93,38 +95,39 @@
             // txtBuscaNome
             // 
             this.txtBuscaNome.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscaNome.Location = new System.Drawing.Point(116, 7);
-            this.txtBuscaNome.Margin = new System.Windows.Forms.Padding(2);
+            this.txtBuscaNome.Location = new System.Drawing.Point(155, 9);
+            this.txtBuscaNome.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscaNome.Multiline = true;
             this.txtBuscaNome.Name = "txtBuscaNome";
-            this.txtBuscaNome.Size = new System.Drawing.Size(496, 27);
+            this.txtBuscaNome.Size = new System.Drawing.Size(660, 32);
             this.txtBuscaNome.TabIndex = 21;
+            this.txtBuscaNome.TextChanged += new System.EventHandler(this.txtBuscaNome_TextChanged);
+            this.txtBuscaNome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscaNome_KeyPress);
             // 
             // label_listaclientes
             // 
             this.label_listaclientes.AutoSize = true;
             this.label_listaclientes.Enabled = false;
             this.label_listaclientes.Font = new System.Drawing.Font("Arial", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_listaclientes.Location = new System.Drawing.Point(9, 13);
-            this.label_listaclientes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_listaclientes.Location = new System.Drawing.Point(12, 16);
             this.label_listaclientes.Name = "label_listaclientes";
-            this.label_listaclientes.Size = new System.Drawing.Size(108, 15);
+            this.label_listaclientes.Size = new System.Drawing.Size(130, 17);
             this.label_listaclientes.TabIndex = 8;
             this.label_listaclientes.Text = "Pesquisa Rápida:";
             this.label_listaclientes.Visible = false;
             // 
             // FormLista
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 443);
+            this.ClientSize = new System.Drawing.Size(981, 545);
             this.Controls.Add(this.btnRealizaBusca);
             this.Controls.Add(this.txtBuscaNome);
             this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.btnAlterar_AbrirForm);
             this.Controls.Add(this.label_listaclientes);
             this.Controls.Add(this.dataGridViewClientes);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormLista";
             this.Text = "Lista de Clientes";
             this.Load += new System.EventHandler(this.FormLista_Load);

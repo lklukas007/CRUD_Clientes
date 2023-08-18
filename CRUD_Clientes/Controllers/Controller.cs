@@ -51,7 +51,7 @@ namespace CRUD_Clientes.Controllers
                 {
                     connection.Open();
 
-                    string query = "SELECT C.Codigo AS CodigoCliente, CASE WHEN C.Nome + ' ' + C.Sobrenome IS NULL THEN C.Nome ELSE C.Nome + ' ' + C.Sobrenome END AS NomeCompleto, DATEDIFF(YEAR, C.Datanascimento, GETDATE()) AS Idade, G.Descricao FROM Clientes C LEFT JOIN Genero G ON G.Codigo = C.Codigo_Genero";
+                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome + ' ' + C.Sobrenome AS NomeCompleto, DATEDIFF(YEAR, C.Datanascimento, GETDATE()) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero";
 
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -236,6 +236,43 @@ namespace CRUD_Clientes.Controllers
                     }
                 }
                 return listaGeneros;
+            }
+
+            // Buscar com filtro por nome:
+            public List<ListaCliente_Model> BuscarClienteFiltro(string nomebusca)
+            {
+                List<ListaCliente_Model> listaClientes = new List<ListaCliente_Model>();
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = "SELECT C.Codigo AS CodigoCliente, C.Nome + ' ' + C.Sobrenome AS NomeCompleto, DATEDIFF( YEAR, C.Datanascimento, GETDATE() ) AS Idade, G.Descricao FROM Clientes C INNER JOIN Genero G ON G.Codigo = C.Codigo_Genero WHERE Nome LIKE '%' + @TextoBusca + '%' OR Sobrenome LIKE '%' + @TextoBusca + '%' OR G.Descricao LIKE'%' + @TextoBusca + '%' OR C.Codigo LIKE'%' + @TextoBusca + '%' OR Endereco LIKE'%' + @TextoBusca + '%' OR Numero_Endereco LIKE'%' + @TextoBusca + '%' OR Datanascimento LIKE'%' + @TextoBusca + '%'";
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.CommandTimeout = 3600;
+                        command.Parameters.AddWithValue("@TextoBusca", nomebusca);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                ListaCliente_Model cliente = new ListaCliente_Model
+                                {
+                                    CodigoCliente = (int)reader["CodigoCliente"],
+                                    NomeCompleto = reader["NomeCompleto"].ToString(),
+                                    Idade = (int)reader["Idade"],
+                                    DescricaoGenero = reader["Descricao"].ToString()
+                                };
+
+                                listaClientes.Add(cliente);
+                            }
+                        }
+                    }
+                }
+
+                return listaClientes;
             }
 
         }

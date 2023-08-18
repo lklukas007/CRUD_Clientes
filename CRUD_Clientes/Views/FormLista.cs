@@ -30,9 +30,9 @@ namespace CRUD_Clientes.Views
             dataGridViewClientes.Columns[1].Name = "Nome Completo";
             dataGridViewClientes.Columns[2].Name = "Idade";
             dataGridViewClientes.Columns[3].Name = "Gênero";
-            CarregarLista();
+            CarregarListaTodos();
         }
-        public void CarregarLista()
+        public void CarregarListaTodos()
         {
             dataGridViewClientes.Enabled = true;
             dataGridViewClientes.Visible = true;
@@ -94,7 +94,7 @@ namespace CRUD_Clientes.Views
                 if (result == DialogResult.Yes)
                 {
                     funcoesCrud.ExcluirCliente(alteraCliente.CodigoCliente);
-                    CarregarLista();
+                    CarregarListaTodos();
                     MessageBox.Show("Cadastro excluido com sucesso!");
                 }
                 else
@@ -106,6 +106,32 @@ namespace CRUD_Clientes.Views
             {
                 MessageBox.Show("Selecione um cliente para realizar a exclusão!");
             }
+        }
+
+        public void CarregarListaFiltroNome(string nomebusca)
+        {
+            // Criando uma instância da classe Funcoes_CRUD
+            var funcoesCrud = new Funcoes_CRUD();
+
+            List<ListaCliente_Model> listaClientes = funcoesCrud.BuscarClienteFiltro(nomebusca);
+
+            dataGridViewClientes.Rows.Clear();
+
+            foreach (ListaCliente_Model cliente in listaClientes)
+            {
+                dataGridViewClientes.Rows.Add(
+                    cliente.CodigoCliente,
+                    cliente.NomeCompleto,
+                    cliente.Idade,
+                    cliente.DescricaoGenero
+                );
+            }
+        }
+
+        private void btnRealizaBusca_Click(object sender, EventArgs e)
+        {
+            string nomebusca = txtBuscaNome.Text;
+            CarregarListaFiltroNome(nomebusca);
         }
     }
 }

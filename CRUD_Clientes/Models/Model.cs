@@ -25,6 +25,8 @@ namespace CRUD_Clientes.Models
 
     public class ListaCliente_Model
     {
+        public string Nome { get; set; }
+        public string Sobrenome { get; set; }
         public int CodigoCliente { get; set; }
         public string NomeCompleto { get; set; }
         public int Idade { get; set; }
